@@ -50,7 +50,7 @@ fi
 
 if [[ "$TEX_VERSION" != "$TEX_LATEST" ]];
 then
-  echo "Newset TegraExplorer version detected ($TEX_LATEST). Updating..."
+  echo "Newest TegraExplorer version detected ($TEX_LATEST). Updating..."
   UPDATE=true
   rm ../tegraexplorer-*.bin
   wget $(curl -s https://api.github.com/repos/suchmememanyskill/TegraExplorer/releases | jq '.[0]' | grep browser_download_url | grep TegraExplorer.bin | cut -d '"' -f4)
