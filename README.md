@@ -1,7 +1,7 @@
 # web-cfw-loader
 
 Fusee Launcher, in a browser!
-This project is published under the MIT license, you can find more information [here](https://github.com/lordfriky/web-cfw-loader/blob/master/LICENSE).
+This project is published under the MIT license, you can find more information [here](https://github.com/nh-server/web-cfw-loader/blob/master/LICENSE).
 
 # Description
 
@@ -10,11 +10,11 @@ Supported browsers are Edge, Chrome, Opera and Chrome for Android. You can check
 
 # Try it out
 
-Either use a web server to host the files or you can try it [here](https://lordfriky.github.io/web-cfw-loader).
+Either use a web server to host the files or you can try it [here](https://fusee.nintendohomebrew.com).
 
 # Contribute to this project
 
-If you want to add a new translation or update/add a payload, see [CONTRIBUTING](https://github.com/lordfriky/web-cfw-loader/blob/master/CONTRIBUTING.md).
+If you want to add a new translation or update/add a payload, see [CONTRIBUTING](https://github.com/nh-server/web-cfw-loader/blob/master/CONTRIBUTING.md).
 
 # Credits and thanks
 
