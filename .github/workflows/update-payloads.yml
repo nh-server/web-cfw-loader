@@ -1,17 +1,25 @@
 name: Update payloads
+
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 3 * * 5" # 3:00 am on fridays
-jobs:
-  Update-Payloads:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    - cron: "0 3 * * 5" # 3:00 am UTC on Fridays
 
-      - name: Install jq
-        run: sudo apt install -y jq
+permissions:
+  contents: write
+
+jobs:
+  update-payloads:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq unzip curl ca-certificates
 
       - name: Update payloads
         run: |
@@ -20,17 +28,19 @@ jobs:
 
       - name: Commit changes if necessary
         run: |
-          if [ "$UPDATE" == true ];
-          then
-            echo 'Commiting changes!'
-            git config --global user.name 'GitHub Actions'
-            git config --global user.email 'github-actions@users.noreply.github.com'
+          if [ "${UPDATE:-false}" = "true" ]; then
+            if git diff --quiet; then
+              echo "UPDATE=true, but no file changes were detected. Nothing to commit."
+              exit 0
+            fi
+
+            echo "Committing payload updates."
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
             git add --all
-            git commit -am ":robot: Payloads updated automatically"
+            git commit -m ":robot: Payloads updated automatically"
             git push
           else
             echo "Commit not needed."
           fi
-
-
-
